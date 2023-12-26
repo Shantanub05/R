@@ -346,3 +346,22 @@ ggcorrplot(corr, hc.order = TRUE,
 #heatmap
 ggplot(iris, aes(Sepal.Length, Petal.Length)) + geom_hex(bins = 20, color = "grey") 
 + scale_fill_distiller(palette = "Spectral", direction = 1)
+
+Modify Column Names
+colnames(data) <- paste0("col", 1:ncol(data))             # Modify all column names
+data
+
+Format Missing Values
+data[data == ""]
+data[data == ""] <- NA
+
+# Drop empty rows
+Remove Empty Rows & Columns
+data <- data[rowSums(is.na(data)) != ncol(data), ]       
+
+data <- data[ , colSums(is.na(data)) != nrow(data)]       # Drop empty columns
+data
+
+
+Remove Duplicates
+data <- unique(data)
